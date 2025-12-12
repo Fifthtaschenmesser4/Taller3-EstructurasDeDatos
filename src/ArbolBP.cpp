@@ -1,5 +1,6 @@
 #include "../include/ArbolBP.h"
 #include <iostream>
+#include <stack>
 
 ArbolBP::ArbolBP(){
     this->raiz=nullptr;
@@ -16,8 +17,16 @@ void ArbolBP::crear_nodo(int id_padre){
         std::cout<<"0: Imagen; 1: Documento; 2: ejecutable; 3: Video; 4: Comprimido"<<std::endl;
         std::cout<<"Ingrese numero>> ";
         std::cin>>tipo;
+        while(tipo<0 || tipo>4){
+            std::cout<<"Ingrese opción válida>> ";
+            std::cin>>tipo;
+        }
         std::cout<<"¿Qué tamaño tiene (MB)?: ";
         std::cin>>tamaño;
+        while(tamaño<=0){
+            std::cout<<"Ingrese tamaño válido: ";
+            std::cin>>tamaño;   
+        }
         NodoArchivo* nuevo = new NodoArchivo(nuevoID(),tipo,tamaño);
         insertar_nodo_grafo(id_padre,nuevo);
     }else if (op==2){
@@ -30,10 +39,32 @@ void ArbolBP::crear_nodo(int id_padre){
 
 void ArbolBP::insertar_nodo_grafo(int clave, NodoGrafo* nodo_grafo){
     if(raiz==nullptr){
-        NodoBInterno* nodo = new NodoBInterno(ordenArbol);
-        int indice;
+        NodoBHoja* nodo = new NodoBHoja(ordenArbol);
+        nodo->insertarDato(clave,nodo_grafo);
+        raiz=nodo;
+        return;
     }
+    std::stack<NodoBInterno*> ruta;
+    NodoBPlusBase* aux = raiz;
+    while(!aux->hoja()){
+        NodoBInterno* aux2 = static_cast<NodoBInterno*>(aux);
+        ruta.push(aux2);
+        aux = aux2->avanzar(clave);
+    }
+    NodoBHoja* hoja = static_cast<NodoBHoja*>(aux);
+    Spliter splited = hoja->insertAndSplit(nodo_grafo, clave); 
+    
+    while(splited.wasSplit and !ruta.empty()){
+        NodoBInterno* padre = ruta.top();
+        ruta.pop();
+        splited=padre->insertTrasladado(splited.idTrasladado,splited.nuevoNodo);
+    }
+    if(splited.wasSplit){
+
+    }
+
 }
+
 NodoGrafo* ArbolBP::buscar_nodo_grafo(int clave){
     if(raiz==nullptr) return nullptr;
     NodoBPlusBase* aux = raiz;
@@ -44,6 +75,25 @@ NodoGrafo* ArbolBP::buscar_nodo_grafo(int clave){
         ES++;
     }
     NodoBHoja* leaf = static_cast<NodoBHoja*>(aux);
+    NodoGrafo* data = leaf->buscar(clave,ordenArbol);
+    if(data==nullptr) std::cout<<"No se encontró el nodo"<<std::endl;
+    else{
+        std::cout<<"¡Nodo encontrado!"<<std::endl;
+        std::cout<<"Número de accesos a NodosB+: "<<ES<<std::endl;
+    }
+    return data;
+}
+
+NodoBPlusBase* ArbolBP::buscar_nodo_bplus(int clave){
+    if(raiz==nullptr) return nullptr;
+    NodoBPlusBase* aux = raiz;
+    int ES=1;
+    while(!aux->hoja()){
+        NodoBInterno* aux2 = static_cast<NodoBInterno*>(aux);
+        aux = aux2->avanzar(clave);
+        ES++;
+    }
+    NodoBHoja* leaf = static_cast<NodoBHoja*>(aux);//REVISAR SI ESTÁ LLENO, E INSERTAR ORDENADO.
     NodoGrafo* data = leaf->buscar(clave,ordenArbol);
     if(data==nullptr) std::cout<<"No se encontró el nodo"<<std::endl;
     else{

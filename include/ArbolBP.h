@@ -18,7 +18,8 @@ class ArbolBP{
     void setOrden(int orden);
 
     private:
-    NodoBInterno* raiz;
+    NodoBPlusBase* raiz;
+    NodoBPlusBase* buscar_nodo_bplus(int clave);
     int IDmaker;
     int nuevoID();
     int ordenArbol;

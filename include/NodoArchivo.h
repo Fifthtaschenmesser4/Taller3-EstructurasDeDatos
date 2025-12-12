@@ -5,6 +5,7 @@ private:
 int tamaño;
 int tipo; // 0: Imagen; 1: Documento; 2: ejecutable; 3: Video; 4: Comprimido
 public:
+void show();
 NodoArchivo(int id, int tipo, int tamaño);
 bool es_directorio() { return false; }
 };

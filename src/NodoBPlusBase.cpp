@@ -14,3 +14,9 @@ int NodoBPlusBase::getOrden(){
 int* NodoBPlusBase::getClaves(){
     return claves;
 }
+int NodoBPlusBase::getCount(){
+    return count;
+}
+void NodoBPlusBase::setCount(int s){
+    this->count=s;
+}

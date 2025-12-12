@@ -1,9 +1,12 @@
 #pragma once
 #include "NodoBPlusBase.h"
+#include "Spliter.h"
 class NodoBInterno: public NodoBPlusBase {
 public:
 NodoBInterno(int orden);
 NodoBPlusBase* avanzar(int id); //NUEVO MÉTODO, QUE UTILIZA buscar_siguiente()
+NodoBPlusBase** getPunteros();
+Spliter insertTrasladado(int idTrasladado, NodoBPlusBase* nodo);
 private:
 NodoBPlusBase** punteros; // Vector del tipo NodoBPlusBase*
 // función que dado un id de NodoGrafo indica a cual Nodo del árbol B hay
