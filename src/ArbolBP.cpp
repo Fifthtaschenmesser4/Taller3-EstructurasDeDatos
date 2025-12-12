@@ -4,6 +4,7 @@
 
 ArbolBP::ArbolBP(){
     this->raiz=nullptr;
+    insertar_nodo_grafo(0,new NodoDirectorio(0)); //Crea el directorio principal
 }
 
 void ArbolBP::crear_nodo(int id_padre){
@@ -59,8 +60,16 @@ void ArbolBP::insertar_nodo_grafo(int clave, NodoGrafo* nodo_grafo){
         ruta.pop();
         splited=padre->insertTrasladado(splited.idTrasladado,splited.nuevoNodo);
     }
-    if(splited.wasSplit){
 
+    if (splited.wasSplit) { //Llegamos a la raíz
+        NodoBInterno* newRoot = new NodoBInterno(ordenArbol);
+        int* newClaves = newRoot->getClaves();
+        NodoBPlusBase** newPunteros = newRoot->getPunteros();
+        newClaves[0] = splited.idTrasladado;
+        newPunteros[0] = raiz;
+        newPunteros[1] = splited.nuevoNodo;
+        newRoot->setCount(1);
+        raiz = newRoot; 
     }
 
 }
@@ -84,7 +93,7 @@ NodoGrafo* ArbolBP::buscar_nodo_grafo(int clave){
     return data;
 }
 
-NodoBPlusBase* ArbolBP::buscar_nodo_bplus(int clave){
+NodoBPlusBase* ArbolBP::buscar_nodo_bplus(int clave){ //ESTO NO FUNCIONA
     if(raiz==nullptr) return nullptr;
     NodoBPlusBase* aux = raiz;
     int ES=1;
@@ -100,7 +109,7 @@ NodoBPlusBase* ArbolBP::buscar_nodo_bplus(int clave){
         std::cout<<"¡Nodo encontrado!"<<std::endl;
         std::cout<<"Número de accesos a NodosB+: "<<ES<<std::endl;
     }
-    return data;
+    return nullptr;
 }
 
 void ArbolBP::eliminar_archivo(int id_archivo, int id_directorio_padre){

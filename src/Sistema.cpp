@@ -14,7 +14,6 @@ void Sistema::insertarNodo(){
     }
     arbolB->crear_nodo(id);
 }
-
 void Sistema::buscarNodo(){
     int id;
     std::cout<<"Ingrese ID del nodo: ";

@@ -16,6 +16,7 @@ class ArbolBP{
     std::string* obtener_rutas_completas(int id_archivo);
     int calcular_espacio_ocupado(int id_directorio);
     void setOrden(int orden);
+    
 
     private:
     NodoBPlusBase* raiz;

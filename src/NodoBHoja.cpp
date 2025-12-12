@@ -52,7 +52,7 @@ Spliter NodoBHoja::insertAndSplit(NodoGrafo* nodo_grafo, int clave){
         int* clavesNuevo = nuevo->getClaves();
         NodoGrafo** punteros = nuevo->datos;
 
-        int c = 0;
+        c = 0;
         for(int i = mitad;i<count;i++){
             clavesNuevo[c]=claves[i];
             punteros[c]=datos[i];
@@ -62,6 +62,7 @@ Spliter NodoBHoja::insertAndSplit(NodoGrafo* nodo_grafo, int clave){
         setSiguiente(nuevo);
         setCount(mitad);
         Spliter s(claveElevada,nuevo,true);
+        return s;
     }
 }
 
