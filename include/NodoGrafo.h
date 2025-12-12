@@ -6,4 +6,5 @@ public:
 NodoGrafo(int id);
 bool es_directorio();
 int* lista_padres();
+int getID();
 };

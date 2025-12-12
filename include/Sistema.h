@@ -9,6 +9,7 @@
 class Sistema{
     public:
         Sistema();
+        void ingresarOrden();
         void insertarNodo();
         void buscarNodo();
         void eliminarArch();
@@ -17,5 +18,5 @@ class Sistema{
         void espacioDirectorio();
     private:
         ArbolBP* arbolB;
-        
+        int orden;
 };

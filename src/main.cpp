@@ -14,6 +14,7 @@ void printMenu(){
 }
 
 void iniciarMenu(Sistema &systema){
+    systema.ingresarOrden();
     int opcion;
     do{
         printMenu();

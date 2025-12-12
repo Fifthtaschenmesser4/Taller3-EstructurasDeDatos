@@ -3,7 +3,6 @@
 
 ArbolBP::ArbolBP(){
     this->raiz=nullptr;
-    
 }
 
 void ArbolBP::crear_nodo(int id_padre){
@@ -30,11 +29,30 @@ void ArbolBP::crear_nodo(int id_padre){
 }
 
 void ArbolBP::insertar_nodo_grafo(int clave, NodoGrafo* nodo_grafo){
-
+    if(raiz==nullptr){
+        NodoBInterno* nodo = new NodoBInterno(ordenArbol);
+        int indice;
+    }
 }
 NodoGrafo* ArbolBP::buscar_nodo_grafo(int clave){
-    return nullptr;
+    if(raiz==nullptr) return nullptr;
+    NodoBPlusBase* aux = raiz;
+    int ES=1;
+    while(!aux->hoja()){
+        NodoBInterno* aux2 = static_cast<NodoBInterno*>(aux);
+        aux = aux2->avanzar(clave);
+        ES++;
+    }
+    NodoBHoja* leaf = static_cast<NodoBHoja*>(aux);
+    NodoGrafo* data = leaf->buscar(clave,ordenArbol);
+    if(data==nullptr) std::cout<<"No se encontró el nodo"<<std::endl;
+    else{
+        std::cout<<"¡Nodo encontrado!"<<std::endl;
+        std::cout<<"Número de accesos a NodosB+: "<<ES<<std::endl;
+    }
+    return data;
 }
+
 void ArbolBP::eliminar_archivo(int id_archivo, int id_directorio_padre){
 
 }
@@ -52,4 +70,7 @@ int ArbolBP::calcular_espacio_ocupado(int id_directorio){
 int ArbolBP::nuevoID(){
     this->IDmaker++;
     return IDmaker;
+}
+void ArbolBP::setOrden(int orden){
+    this->ordenArbol=orden;
 }
