@@ -14,7 +14,6 @@ void printMenu(){
 }
 
 void iniciarMenu(Sistema &systema){
-    systema.ingresarOrden();
     int opcion;
     do{
         printMenu();
@@ -22,26 +21,37 @@ void iniciarMenu(Sistema &systema){
         if(opcion == 1){
             systema.insertarNodo();
         } else if (opcion == 2){
-            void buscarNodo();
+            systema.buscarNodo();
         } else if(opcion ==3){
-            void eliminarArch();
+            systema.eliminarArch();
         } else if(opcion == 4){
-            void listarDirectorio();
+            systema.listarDirectorio();
         } else if(opcion == 5){
-            void printRuta();
+            systema.printRuta();
         } else if(opcion == 6){
-           void espacioDirectorio();
+           systema.espacioDirectorio();
         } else if(opcion==7){
             std::cout<<"Saliendo..."<<std::endl;
         } else {
-            std::cout<<"Ingrese una opción válida."<<std::endl;
+            std::cout<<"Ingrese una opcion valida."<<std::endl;
         }
     }while(opcion != 7);
 }
 
+int ingreseOrden(){
+    int n;
+    std::cout<<"Ingrese el orden (factor m) del arbol: ";
+    std::cin>>n;
+    while(n<1){
+        std::cout<<"Ingrese un valor valido: ";
+        std::cin>>n;
+    }
+    return n;
+}
 
 int main() {
-    Sistema systema;
+    int ord = ingreseOrden();
+    Sistema systema(ord);
     iniciarMenu(systema);
     return 0;
 }

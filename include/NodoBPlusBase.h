@@ -7,6 +7,7 @@ int getOrden();
 int* getClaves();
 int getCount();
 void setCount(int s);
+void sumarCount();
 private:
 int* claves; // vector de ids de NodoGrafo
 int orden; // factor m de árbol

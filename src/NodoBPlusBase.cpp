@@ -3,7 +3,7 @@
 NodoBPlusBase::NodoBPlusBase(int orden, bool es_hoja){
     this->orden=orden;
     this->es_hoja=es_hoja;
-    this -> claves = new int[orden];
+    this -> claves = new int[orden+1];
 }
 bool NodoBPlusBase::hoja(){
     return es_hoja;
@@ -19,4 +19,8 @@ int NodoBPlusBase::getCount(){
 }
 void NodoBPlusBase::setCount(int s){
     this->count=s;
+}
+
+void NodoBPlusBase::sumarCount(){
+    this->count++;
 }

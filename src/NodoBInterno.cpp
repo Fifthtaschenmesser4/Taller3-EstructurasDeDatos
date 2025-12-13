@@ -1,6 +1,6 @@
 #include "../include/NodoBInterno.h"
 NodoBInterno::NodoBInterno(int orden) : NodoBPlusBase(orden, false){
-    punteros = new NodoBPlusBase*[orden];
+    punteros = new NodoBPlusBase*[orden+1];
 }
 NodoBPlusBase** NodoBInterno::getPunteros(){
     return punteros;

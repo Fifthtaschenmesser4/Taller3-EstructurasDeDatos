@@ -5,5 +5,7 @@ public:
 NodoDirectorio(int id);
 void show();
 bool es_directorio() { return true; }
-int* lista_hijos();
+std::vector<int> lista_hijos;
+void agregarHijo(int id_hijo);
+std::vector<int> getHijos();
 };

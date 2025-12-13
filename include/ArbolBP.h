@@ -6,7 +6,7 @@
 #include <string>
 class ArbolBP{
     public:
-    ArbolBP();
+    ArbolBP(int orden);
     ~ArbolBP(){};
     void insertar_nodo_grafo(int clave, NodoGrafo* nodo_grafo);
     NodoGrafo* buscar_nodo_grafo(int clave);
@@ -20,6 +20,7 @@ class ArbolBP{
 
     private:
     NodoBPlusBase* raiz;
+    void insertarRaiz(NodoBHoja* root, NodoGrafo* nodo_grafo, int clave);
     NodoBPlusBase* buscar_nodo_bplus(int clave);
     int IDmaker;
     int nuevoID();

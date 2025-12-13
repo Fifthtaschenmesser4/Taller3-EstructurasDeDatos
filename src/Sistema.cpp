@@ -1,7 +1,8 @@
 #include "../include/Sistema.h"
 #include <iostream>
-Sistema::Sistema(){
-    this -> arbolB = new ArbolBP();
+Sistema::Sistema(int n){
+    this->orden=n;
+    this -> arbolB = new ArbolBP(n);
 }
 
 void Sistema::insertarNodo(){
@@ -9,7 +10,7 @@ void Sistema::insertarNodo(){
     std::cout<<"Ingrese ID del directorio padre: ";
     std::cin>>id;
     if(arbolB->buscar_nodo_grafo(id)==nullptr){
-        std::cout<<"ERROR:Ingrese ID válido"<<std::endl;
+        std::cout<<"ERROR:Ingrese ID valido"<<std::endl;
         return;
     }
     arbolB->crear_nodo(id);
@@ -39,14 +40,4 @@ void Sistema::printRuta(){
 
 void Sistema::espacioDirectorio(){
 
-}
-void Sistema::ingresarOrden(){
-    int n;
-    std::cout<<"Ingrese el orden (factor m) del árbol: ";
-    std::cin>>n;
-    while(n<1){
-        std::cout<<"Ingrese un valor válido: ";
-        std::cin>>n;
-    }
-    this->orden=orden;
 }

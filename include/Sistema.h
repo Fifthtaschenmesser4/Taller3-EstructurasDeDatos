@@ -8,8 +8,7 @@
 
 class Sistema{
     public:
-        Sistema();
-        void ingresarOrden();
+        Sistema(int n);
         void insertarNodo();
         void buscarNodo();
         void eliminarArch();

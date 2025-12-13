@@ -1,7 +1,11 @@
 #include "../include/NodoBHoja.h"
 #include "../include/NodoBInterno.h"
+#include <iostream>
 #include <queue>
-NodoBHoja::NodoBHoja(int orden) : NodoBPlusBase(orden, true){}
+NodoBHoja::NodoBHoja(int orden) : NodoBPlusBase(orden, true){
+    this->datos = new NodoGrafo*[orden+1];
+    this->siguiente_hoja=nullptr;
+}
 NodoGrafo* NodoBHoja::buscar(int id, int ordenArbol){
     if (!datos) return nullptr;
     for (int i = 0; i < getCount(); ++i) {
@@ -11,6 +15,7 @@ NodoGrafo* NodoBHoja::buscar(int id, int ordenArbol){
     return nullptr;
 }
 void NodoBHoja::insertarDato(int clave, NodoGrafo* nodo){
+
 }
 Spliter NodoBHoja::insertAndSplit(NodoGrafo* nodo_grafo, int clave){
     int* claves = getClaves();
@@ -65,7 +70,9 @@ Spliter NodoBHoja::insertAndSplit(NodoGrafo* nodo_grafo, int clave){
         return s;
     }
 }
-
+NodoGrafo** NodoBHoja::getDatos(){
+    return datos;
+}
 void NodoBHoja::setSiguiente(NodoBHoja* nodo){
     this->siguiente_hoja=nodo;
 }

@@ -1,6 +1,6 @@
 #include "../include/NodoArchivo.h"
 #include <iostream>
-NodoArchivo::NodoArchivo(int id, int tipo, int tamaño) : NodoGrafo(id) {
+NodoArchivo::NodoArchivo(int id, int tipo, int tamaño) : NodoGrafo(id,false) {
     this->tipo=tipo;
     this->tamaño=tamaño;
 }
