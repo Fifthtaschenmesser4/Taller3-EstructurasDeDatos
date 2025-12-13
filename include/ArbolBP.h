@@ -20,10 +20,11 @@ class ArbolBP{
     void rutasREC(NodoGrafo* actual, std::string rutaParcial,
     std::vector<std::string>& rutasFinales);
     int espacioREC(int id_nodo);
+    
+    NodoBHoja* buscarNodoHoja(int clave);
     private:
     NodoBPlusBase* raiz;
     void insertarRaiz(NodoBHoja* root, NodoGrafo* nodo_grafo, int clave);
-    NodoBPlusBase* buscar_nodo_bplus(int clave);
     int IDmaker;
     int nuevoID();
     int ordenArbol;

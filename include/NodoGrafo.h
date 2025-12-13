@@ -10,4 +10,5 @@ std::vector<int> lista_padres;
 bool es_directorio;
 int getID();
 void agregarPadre(int id_padre);
+void removerPadre(int id_directorio_padre);
 };

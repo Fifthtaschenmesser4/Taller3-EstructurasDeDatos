@@ -7,4 +7,5 @@ void show();
 bool es_directorio() { return true; }
 std::vector<int> lista_hijos;
 void agregarHijo(int id_hijo);
+bool removerHijo(int id_archivo);
 };

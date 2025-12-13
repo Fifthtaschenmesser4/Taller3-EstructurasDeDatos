@@ -120,28 +120,7 @@ if(raiz==nullptr) return nullptr;
     NodoGrafo* data = leaf->buscar(clave,ordenArbol);
     return data;
 }
-NodoBPlusBase* ArbolBP::buscar_nodo_bplus(int clave){ //ESTO NO FUNCIONA
-    if(raiz==nullptr) return nullptr;
-    NodoBPlusBase* aux = raiz;
-    int ES=1;
-    while(!aux->hoja()){
-        NodoBInterno* aux2 = static_cast<NodoBInterno*>(aux);
-        aux = aux2->avanzar(clave);
-        ES++;
-    }
-    NodoBHoja* leaf = static_cast<NodoBHoja*>(aux);//REVISAR SI ESTÁ LLENO, E INSERTAR ORDENADO.
-    NodoGrafo* data = leaf->buscar(clave,ordenArbol);
-    if(data==nullptr) std::cout<<"No se encontró el nodo"<<std::endl;
-    else{
-        std::cout<<"¡Nodo encontrado!"<<std::endl;
-        std::cout<<"Número de accesos a NodosB+: "<<ES<<std::endl;
-    }
-    return nullptr;
-}
 
-void ArbolBP::eliminar_archivo(int id_archivo, int id_directorio_padre){
-
-}
 void ArbolBP::listar_contenido(int id_directorio){
     NodoDirectorio* directorio = static_cast<NodoDirectorio*>(buscar_nodo_grafoSINTEXTO(id_directorio));
     if(directorio==nullptr){
@@ -169,8 +148,7 @@ void ArbolBP::listar_contenido(int id_directorio){
     }
 }
 
-void ArbolBP::rutasREC(NodoGrafo* actual, std::string rutaParcial,
-    std::vector<std::string>& rutasFinales) {
+void ArbolBP::rutasREC(NodoGrafo* actual, std::string rutaParcial,std::vector<std::string>& rutasFinales) {
     
     std::string idActual = std::to_string(actual->getID());
     std::string avance = ">" + idActual + rutaParcial;
@@ -190,6 +168,8 @@ void ArbolBP::rutasREC(NodoGrafo* actual, std::string rutaParcial,
         } 
     }
 }
+
+
 
 std::vector<std::string>* ArbolBP::obtener_rutas_completas(int id_archivo) {
     NodoGrafo* inicio = buscar_nodo_grafoSINTEXTO(id_archivo);
