@@ -8,4 +8,5 @@ public:
 void show();
 NodoArchivo(int id, int tipo, int tamaño);
 bool es_directorio() { return false; }
+int getTamaño();
 };

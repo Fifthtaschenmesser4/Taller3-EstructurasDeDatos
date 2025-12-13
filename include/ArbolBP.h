@@ -19,7 +19,7 @@ class ArbolBP{
     NodoGrafo* buscar_nodo_grafoSINTEXTO(int clave);
     void rutasREC(NodoGrafo* actual, std::string rutaParcial,
     std::vector<std::string>& rutasFinales);
-
+    int espacioREC(int id_nodo);
     private:
     NodoBPlusBase* raiz;
     void insertarRaiz(NodoBHoja* root, NodoGrafo* nodo_grafo, int clave);

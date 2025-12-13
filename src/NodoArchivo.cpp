@@ -9,3 +9,7 @@ void NodoArchivo::show(){
     std::cout<<"Tamano: "<<tamaño<<std::endl;
     std::cout<<"Tipo: "<<tipo<<std::endl;
 }
+
+int NodoArchivo::getTamaño(){
+    return tamaño;
+}

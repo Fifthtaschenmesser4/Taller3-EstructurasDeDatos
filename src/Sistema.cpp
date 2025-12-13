@@ -57,5 +57,8 @@ void Sistema::printRuta(){
 }
 
 void Sistema::espacioDirectorio(){
-
+    int id;
+    std::cout<<"Ingrese ID del directorio: ";
+    std::cin>>id;
+    int espacio = arbolB->calcular_espacio_ocupado(id);
 }

@@ -184,7 +184,7 @@ void ArbolBP::rutasREC(NodoGrafo* actual, std::string rutaParcial,
 
     for (int i = 0;i<padres.size();i++) {
         int id_padre = padres[i];
-        NodoGrafo* padre = buscar_nodo_grafoSINTEXTO(id_padre); // Acceso mediado por el B+
+        NodoGrafo* padre = buscar_nodo_grafoSINTEXTO(id_padre);
         if (padre != nullptr) {
             rutasREC(padre, avance, rutasFinales);
         } 
@@ -199,9 +199,38 @@ std::vector<std::string>* ArbolBP::obtener_rutas_completas(int id_archivo) {
     
     return new std::vector<std::string>(rutas);
 }
+int ArbolBP::espacioREC(int id_nodo) {
+    NodoGrafo* actual = buscar_nodo_grafoSINTEXTO(id_nodo);
 
+    if (!actual->es_directorio) {
+        NodoArchivo* file = static_cast<NodoArchivo*>(actual);
+        return file->getTamaño();
+    } else {
+        int suma = 0; 
+        NodoDirectorio* directorio = static_cast<NodoDirectorio*>(actual);
+
+        std::vector<int> hijos = directorio->lista_hijos;
+        
+        for (int i = 0;i<hijos.size();i++) {
+            suma += espacioREC(hijos[i]);
+        }
+        
+        return suma;
+    }
+}
 int ArbolBP::calcular_espacio_ocupado(int id_directorio){
-    return 0;
+    NodoGrafo* aux = buscar_nodo_grafoSINTEXTO(id_directorio);
+    if(aux==nullptr){
+        std::cout<<"Ingrese ID valido"<<std::endl;
+        return -1;
+    }
+    if(!aux->es_directorio){
+        std::cout<<"Ingrese ID de directorio, no archivo"<<std::endl;
+        return -1;
+    }
+    int espacio = espacioREC(id_directorio);
+    std::cout<<"El espacio ocupado por el directorio es de "<<espacio<<" unidades de memoria"<<std::endl;
+    return espacio;
 }
 
 int ArbolBP::nuevoID(){
