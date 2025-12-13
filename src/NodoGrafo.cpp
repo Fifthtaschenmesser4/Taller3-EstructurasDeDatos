@@ -12,3 +12,4 @@ int NodoGrafo::getID(){
 void NodoGrafo::agregarPadre(int id_padre){
     this->lista_padres.push_back(id_padre);
 }
+

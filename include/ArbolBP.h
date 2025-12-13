@@ -13,10 +13,12 @@ class ArbolBP{
     void crear_nodo(int id_padre);
     void eliminar_archivo(int id_archivo, int id_directorio_padre);
     void listar_contenido(int id_directorio);
-    std::string* obtener_rutas_completas(int id_archivo);
+    std::vector<std::string>* obtener_rutas_completas(int id_archivo);
     int calcular_espacio_ocupado(int id_directorio);
     void setOrden(int orden);
-    
+    NodoGrafo* buscar_nodo_grafoSINTEXTO(int clave);
+    void rutasREC(NodoGrafo* actual, std::string rutaParcial,
+    std::vector<std::string>& rutasFinales);
 
     private:
     NodoBPlusBase* raiz;

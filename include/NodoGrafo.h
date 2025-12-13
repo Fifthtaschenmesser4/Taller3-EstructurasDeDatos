@@ -3,10 +3,11 @@
 class NodoGrafo{
 private:
 int id;
+
 public:
 NodoGrafo(int id, bool esDirectorio);
-bool es_directorio;
 std::vector<int> lista_padres;
+bool es_directorio;
 int getID();
 void agregarPadre(int id_padre);
 };

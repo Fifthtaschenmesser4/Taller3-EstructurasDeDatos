@@ -6,6 +6,6 @@ NodoArchivo::NodoArchivo(int id, int tipo, int tamaño) : NodoGrafo(id,false) {
 }
 void NodoArchivo::show(){
     std::cout<<"ID: "<<getID()<<std::endl;
-    std::cout<<"Tamaño: "<<tamaño<<std::endl;
+    std::cout<<"Tamano: "<<tamaño<<std::endl;
     std::cout<<"Tipo: "<<tipo<<std::endl;
 }

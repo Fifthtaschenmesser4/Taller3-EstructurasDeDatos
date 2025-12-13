@@ -32,10 +32,28 @@ void Sistema::eliminarArch(){
 }
 
 void Sistema::listarDirectorio(){
+    int id;
+    std::cout<<"Ingrese ID del directorio: ";
+    std::cin>>id;
+    if(arbolB->buscar_nodo_grafoSINTEXTO(id)==nullptr){
+        std::cout<<"ERROR:Ingrese ID valido"<<std::endl;
+        return;
+    }
+    arbolB->listar_contenido(id);
 }
 
 void Sistema::printRuta(){
-
+    int id;
+    std::cout<<"Ingrese ID del archivo: ";
+    std::cin>>id;
+    if(arbolB->buscar_nodo_grafoSINTEXTO(id)==nullptr){
+        std::cout<<"ERROR:Ingrese ID valido"<<std::endl;
+        return;
+    }
+    std::vector<std::string>* rutas = arbolB->obtener_rutas_completas(id);
+    for(auto &str : *rutas){
+        std::cout<<str<<std::endl;
+    }
 }
 
 void Sistema::espacioDirectorio(){
